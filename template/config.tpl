@@ -2,25 +2,30 @@
 package config
 
 import (
-	"bitbucket.org/squarre/core/arre"
+	"fmt"
+	//_ "github.com/jinzhu/gorm/dialects/sqlite"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"<%= m.RepoHost %>/<%= m.RepoUser %>/<%= m.RepoName %>/api"
 	"<%= m.RepoHost %>/<%= m.RepoUser %>/<%= m.RepoName %>/app"
 	"<%= m.RepoHost %>/<%= m.RepoUser %>/<%= m.RepoName %>/repo"
-	"fmt"
+	"github.com/uauteam/ecot"
 )
 
-var Default = arre.Config{
+var Default = ecot.Config{
 	Name:app.Name,
-	DBDialect:"sqlite3",
-	DBArgs:[]interface{}{fmt.Sprintf("./repo/%s.db", app.Name)},
+	//DBDialect:"sqlite3",
+	//DBArgs:[]interface{}{fmt.Sprintf("./repo/%s.db", app.Name)},
+	DBDialect:"mysql",
+    DBArgs:[]interface{}{fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8&parseTime=True&loc=Local", "root", "root",
+        "localhost:3306", "db_" + app.Name)},
 
 	AutoMigrateEntityRegister:repo.AutoMigrateEntityRegister,
 
 	ApiRegister: api.Register,
 }
 
-func Config(c arre.Config)func()arre.Config {
-	return func()arre.Config {
+func Config(c ecot.Config)func()ecot.Config {
+	return func()ecot.Config {
 		if c.Name == "" {
 			c.Name = Default.Name
 		}

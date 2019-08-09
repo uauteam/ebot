@@ -25,7 +25,14 @@ var (
 // init project metadata and work dir
 func InitProjectMetadata(m *project.Metadata) {
 	// go path
-	m.GoPath = os.Getenv("GOPATH")
+	//m.GoPath = os.Getenv("GOPATH")
+	//if m.Workspace == "" {
+	//	m.Workspace = os.Getenv("GOPATH")
+	//}
+	if strings.TrimSpace(m.Workspace) == "" {
+		fmt.Println("Input project workspace (e.g. /Users/kingphang/Workspaces/uau)")
+		fmt.Scanln(&(m.Workspace))
+	}
 
 	// repo name
 	fmt.Println("Input repo name (e.g. account):")
@@ -49,23 +56,26 @@ func InitProjectMetadata(m *project.Metadata) {
 	m.ModuleTitleNamePlural = inflection.Plural(m.ModuleTitleName)
 
 	// repo host
-	fmt.Println("Input src repo address (defalt: bitbucket.org):")
+	fmt.Println("Input src repo address (defalt: github.com):")
 	fmt.Scanln(&repoHost)
 	if repoHost == "" {
-		repoHost = "bitbucket.org"
+		repoHost = "github.com"
 	}
 	m.RepoHost = repoHost
 
 	// repo user
-	fmt.Println("Input src repo user (defalt: squarre):")
+	fmt.Println("Input src repo user (defalt: uauteam):")
 	fmt.Scanln(&repoUser)
 	if repoUser == "" {
-		repoUser = "squarre"
+		repoUser = "uauteam"
 	}
 	m.RepoUser = repoUser
 
 	// work dir
-	workDir = m.GoPath + "/src/" + repoHost + "/" + repoUser + "/" + repoName + "/"
+	workDir = m.Workspace + "/src/" + repoHost + "/" + repoUser + "/" + repoName + "/"
+	if m.Workspace != os.Getenv("GOPATH") {
+		workDir =  m.Workspace + "/" + repoName + "/"
+	}
 	fmt.Printf("work dir: %s\n", workDir)
 
 	if _, err := os.Stat(workDir); os.IsNotExist(err) {

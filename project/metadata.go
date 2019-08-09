@@ -2,7 +2,11 @@ package project
 
 
 type Metadata struct {
-	GoPath string
+	// GoPath string
+	
+	// the parent path of the repo
+	// default is $GOPATH
+	Workspace string
 
 	RepoHost string
 	RepoUser string

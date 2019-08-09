@@ -7,5 +7,6 @@ require (
 	github.com/jinzhu/inflection v1.0.0
 	github.com/shiyanhui/hero v0.0.1
 	github.com/spf13/cobra v0.0.5
-	github.com/uauteam/ago v0.0.0-20190729114042-513f1196991a
+	github.com/uauteam/ago v1.0.0
+	github.com/uauteam/ecot v1.0.8
 )

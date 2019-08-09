@@ -3,11 +3,11 @@ package api
 
 import (
 	"github.com/labstack/echo"
-	"<%= m.RepoHost %>/<%= m.RepoUser %>/<%= m.RepoName %>/svc"
-	"strconv"
-	"net/http"
-	"<%= m.RepoHost %>/<%= m.RepoUser %>/<%= m.RepoName %>/api/req"
 	"<%= m.RepoHost %>/<%= m.RepoUser %>/<%= m.RepoName %>/api/query"
+	"<%= m.RepoHost %>/<%= m.RepoUser %>/<%= m.RepoName %>/api/req"
+	"<%= m.RepoHost %>/<%= m.RepoUser %>/<%= m.RepoName %>/svc"
+	"net/http"
+	"strconv"
 )
 
 func Create<%= m.ModuleTitleName %>(c echo.Context) (err error) {

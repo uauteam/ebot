@@ -19,6 +19,13 @@ var generateCmd = &cobra.Command{
 		}
 		projectMetadata.Designed = designed
 
+		workspace, err := cmd.Flags().GetString("workspace")
+		if err != nil {
+			log.Printf(err.Error())
+		}
+		projectMetadata.Workspace = workspace
+
+
 		// init project metadata and work dir
 		generator.InitProjectMetadata(&projectMetadata)
 

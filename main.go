@@ -2,12 +2,9 @@ package main
 
 import (
 	"github.com/uauteam/ebot/cmd"
-	"github.com/uauteam/ebot/project"
 )
 
-var (
-	projectMetadata project.Metadata
-)
+//var projectMetadata project.Metadata
 
 func main()  {
 	cmd.Execute()

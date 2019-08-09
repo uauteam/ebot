@@ -10,6 +10,7 @@ func init() {
 	rootCmd.AddCommand(versionCmd)
 
 	generateCmd.Flags().BoolP("designed", "d", false, "whether the module is designed or not(default is false)")
+	generateCmd.Flags().StringP("workspace", "w", "", "the parent path of the repo(default is $GOPATH)")
 	rootCmd.AddCommand(generateCmd)
 }
 
