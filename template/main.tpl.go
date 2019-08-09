@@ -15,7 +15,6 @@ func GenerateMainFile(m *project.Metadata, buffer *bytes.Buffer) {
 package main
 
 import (
-	"github.com/sirupsen/logrus"
 	`)
 	hero.EscapeHTML(m.RepoName, buffer)
 	buffer.WriteString(` "`)
@@ -35,7 +34,7 @@ func main() {
 	if err := e.Register(`)
 	hero.EscapeHTML(m.RepoName, buffer)
 	buffer.WriteString(`.Config); err != nil {
-		logrus.Fatal(err)
+		e.Logger.Fatal(err)
 	}
 
 	e.Logger.Fatal(e.Start(":1323"))
